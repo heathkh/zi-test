@@ -1,0 +1,7 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+FIND_PACKAGE(cmakesnap) # enables CMakeSNAP support in all subdirectories
+
+ADD_SUBDIRECTORY(c)
+
+CHECK_NO_MISSING_PACKAGES()
+ 

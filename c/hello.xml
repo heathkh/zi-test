@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
+  <name>HelloWorld-in-C</name>
+  <summary>minimal demonstration package for 0release</summary>
+  <description>
+    This program outputs the message &quot;Hello World&quot;. You can create new releases of it
+    using 0release. It is written in C, and generates source and binary packages when released.
+  </description>
+
+  <homepage>http://0install.net/0release.html</homepage>
+
+  <release:management xmlns:release="http://zero-install.sourceforge.net/2007/namespaces/0release">
+    <!-- Update the copy of the version number -->
+    <release:action phase="commit-release">sed -i &quot;s/^#define VERSION ".*"$/#define VERSION \"$RELEASE_VERSION\"/&quot; hello.c</release:action>
+  </release:management>
+
+  <feed-for interface="http://zeroinstall.dasgizmo.net/zi-test.xml"/>
+
+  <group license="OSI Approved :: BSD License">
+    <implementation arch="*-src" id="."  version="1.0-post">
+      <command name='compile' shell-command='cmake "$SRCDIR" &amp;&amp; cmake --build .'>
+      <requires interface='http://zeroinstall.dasgizmo.net/cmake.xml'>
+          <executable-in-path name='cmake'/>
+      </requires>
+      </command>
+           
+    </implementation>
+  </group>
+
+</interface>
